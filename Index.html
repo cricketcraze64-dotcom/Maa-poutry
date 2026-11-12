@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maa Poultry Farm – Farm Fresh Eggs, Delivered</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="fixedbg" id="bg" aria-hidden="true"></div>
+<canvas id="cf"></canvas>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="#home">🐔 Maa Poultry Farm</a>
+  <nav class="links" aria-label="Main">
+    <a href="#home" data-p="home">Home</a><a href="#order" data-p="order">Order Eggs</a><a href="#about" data-p="about">About</a><a href="#contact" data-p="contact">Contact</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section class="page" id="pg-home">
+  <div class="hero">
+    <div>
+      <h1>Farm-fresh eggs<span>straight from our farm</span></h1>
+      <p class="lead">Healthy poultry, healthy food. Fresh, natural eggs from our farm in Gujarat, delivered to your door.</p>
+      <div class="pills"><div class="pill">1 egg <b>₹15</b></div><div class="pill">Full tray of 30 <b>₹450</b></div></div>
+      <a class="btn" href="#order">🥚 Order Eggs Now</a>
+    </div>
+    <div class="stage">
+      <button class="egg" id="egg" aria-label="Tap to crack the egg"><svg viewBox="0 0 200 250"><path d="M10 120 L40 100 L65 130 L95 95 L125 130 L155 100 L190 125" fill="none" stroke="#8a5a14" stroke-width="5" stroke-linejoin="round"/></svg></button>
+      <div class="chick" aria-hidden="true">🐥</div>
+      <div class="hint" id="hint">Tap the egg 👆</div>
+    </div>
+  </div>
+
+  <div class="grid sect">
+    <div class="card"><i>🌿</i><h3>Farm fresh</h3><p>Collected daily and packed with care.</p></div>
+    <div class="card"><i>🐔</i><h3>Healthy hens</h3><p>Natural feed and an open, clean farm.</p></div>
+    <div class="card"><i>📱</i><h3>Easy UPI payment</h3><p>Scan the QR and confirm on WhatsApp.</p></div>
+  </div>
+
+  <div class="sect"><h2>Simple pricing</h2>
+    <div class="grid">
+      <div class="card price-card"><i>🥚</i><h3>Single egg</h3><b>₹15</b><p>Buy as many as you need</p></div>
+      <div class="card price-card"><i>🧺</i><h3>Full tray</h3><b>₹450</b><p>30 eggs in one tray</p></div>
+    </div>
+  </div>
+
+  <div class="sect"><h2>How ordering works</h2>
+    <div class="how" style="margin-top:18px">
+      <div><p><b>Choose your eggs</b>Pick single pieces or full trays.</p></div>
+      <div><p><b>Pay with UPI</b>Scan the QR code with any UPI app.</p></div>
+      <div><p><b>Confirm on WhatsApp</b>We verify your payment and confirm the order.</p></div>
+    </div>
+  </div>
+
+  <div class="band"><h2>Ready for fresh eggs?</h2><p style="margin-top:8px">Your order takes less than a minute.</p><a class="btn" href="#order">Start your order</a></div>
+</section>
+
+<!-- ORDER -->
+<section class="page" id="pg-order">
+  <h2 style="text-align:center">Order eggs</h2>
+  <p class="mute" style="text-align:center">₹15 per egg · ₹450 per tray of 30</p>
+  <div class="order">
+    <div class="steps" id="steps"><div class="on"></div><div></div><div></div><div></div></div>
+
+    <div class="panel show" id="p1">
+      <h3>1. Choose your eggs</h3>
+      <div class="tabs">
+        <button class="tab on" id="tPiece">🥚 Single eggs<small>₹15 each</small></button>
+        <button class="tab" id="tTray">🧺 Full tray<small>30 eggs = ₹450</small></button>
+      </div>
+      <div class="qty"><button id="minus" aria-label="Decrease">−</button><output id="q">6</output><button id="plus" aria-label="Increase">+</button></div>
+      <div class="eggrow" id="eggrow"></div>
+      <div class="total"><span id="tlabel">6 eggs</span><b id="tprice">₹90</b></div>
+      <button class="btn g" style="width:100%" id="n1">Continue</button>
+    </div>
+
+    <div class="panel" id="p2">
+      <h3>2. Delivery details</h3>
+      <label for="nm">Full name</label><input id="nm" autocomplete="name" placeholder="Your name">
+      <label for="ph">Mobile number</label><input id="ph" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel" placeholder="10-digit number">
+      <label for="ad">Delivery address</label><textarea id="ad" rows="3" autocomplete="street-address" placeholder="House no, street, area, city"></textarea>
+      <div class="err" id="err" role="alert"></div>
+      <div class="row"><button class="btn gr" id="b2">Back</button><button class="btn g" id="n2">Go to payment</button></div>
+    </div>
+
+    <div class="panel" id="p3">
+      <h3 style="text-align:center">3. Scan to pay ₹<span id="payamt"></span></h3>
+      <div class="qrbox"><div id="qr"></div></div>
+      <div class="upi">UPI ID: <span id="upiid"></span></div>
+      <a class="btn g" id="upiBtn" style="width:100%">📲 Pay with UPI app</a>
+      <label for="utr" style="margin-top:16px">UTR / Transaction ID (optional)</label><input id="utr" placeholder="Shown in your UPI app after paying">
+      <div class="row"><button class="btn gr" id="b3">Back</button><button class="btn wa" id="n3">I have paid</button></div>
+    </div>
+
+    <div class="panel ok" id="p4">
+      <div class="big">🎉</div>
+      <h2>Order ready!</h2>
+      <p>Order ID: <b id="oid"></b></p>
+      <div class="sum" id="sum"></div>
+      <p class="mute">Send your order on WhatsApp. The owner will check your payment and confirm.</p>
+      <a class="btn wa" id="waBtn" target="_blank" rel="noopener" style="width:100%">💬 Send on WhatsApp</a>
+      <div class="row"><button class="btn" id="again">Place another order</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="pg-about">
+  <h2>About Maa Poultry Farm</h2>
+  <p class="mute" style="margin-top:10px;max-width:60ch">We are a family-run poultry farm in Gujarat, India. Our promise is simple: healthy poultry, healthy food. We raise our hens on natural feed in a clean, open farm and deliver fresh eggs and quality chicken straight to your home.</p>
+  <div class="grid">
+    <div class="card"><i>🥚</i><h3>Fresh eggs</h3><p>Collected every day and sold fast, so you get them fresh.</p></div>
+    <div class="card"><i>🍗</i><h3>Quality chicken</h3><p>Ask us on WhatsApp about chicken availability.</p></div>
+    <div class="card"><i>🌱</i><h3>Natural farming</h3><p>Natural feed, no shortcuts.</p></div>
+  </div>
+  <h2 class="sect">Questions</h2>
+  <div style="margin-top:16px">
+    <details><summary>How much do eggs cost?</summary>A single egg is ₹15. A full tray of 30 eggs is ₹450.</details>
+    <details><summary>How do I pay?</summary>Pay by UPI. Scan the QR code on the order page or tap the UPI button on your phone.</details>
+    <details><summary>How is my payment confirmed?</summary>After paying, you send your order on WhatsApp. The owner checks the payment and confirms your order.</details>
+    <details><summary>Where do you deliver?</summary>Message us on WhatsApp with your address and we will tell you if we can deliver there.</details>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="page" id="pg-contact">
+  <h2>Contact us</h2>
+  <p class="mute" style="margin-top:8px">Questions, bulk orders or chicken enquiries? We reply fast on WhatsApp.</p>
+  <div class="cinfo">
+    <a href="tel:+919898819898"><i>📞</i><span>+91 98988 19898<br><small class="mute">Tap to call</small></span></a>
+    <a id="waDirect" href="#" target="_blank" rel="noopener"><i>💬</i><span>Chat on WhatsApp<br><small class="mute">Usually replies quickly</small></span></a>
+    <a href="#contact"><i>📍</i><span>Gujarat, India<br><small class="mute">Maa Poultry Farm</small></span></a>
+  </div>
+  <div class="card">
+    <h3>Send a message</h3>
+    <label for="cn">Your name</label><input id="cn" autocomplete="name">
+    <label for="cm">Message</label><textarea id="cm" rows="4" placeholder="How can we help?"></textarea>
+    <div class="row"><button class="btn wa" id="cs">Send on WhatsApp</button></div>
+  </div>
+</section>
+</main>
+
+<footer>🐔 Maa Poultry Farm · Gujarat, India · +91 98988 19898</footer>
+
+<nav class="tabbar" aria-label="Mobile">
+  <a href="#home" data-p="home"><span>🏠</span>Home</a>
+  <a href="#order" data-p="order"><span>🥚</span>Order</a>
+  <a href="#about" data-p="about"><span>🐔</span>About</a>
+  <a href="#contact" data-p="contact"><span>📞</span>Contact</a>
+</nav>
+
+<script src="script.js"></script>
+</body>
+</html>
